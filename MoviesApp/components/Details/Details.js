@@ -47,8 +47,8 @@ const Details = ({ route, navigation, movieGenres }) => {
                 width: screen.width,
             }}>
                 <FlatList numColumns="3" data={movieCredits.slice(0, 6)} renderItem={({ item }) => <View style={{ margin: 10, marginVertical: 8 }}>
-                    <Text style={{ fontWeight: "bold", }}>{item.name}</Text>
-                    <Text style={{ textAlign: "center" }}>{item.job || "Actor"}</Text>
+                    <Text style={{ fontWeight: "bold", flex: 1, flexWrap: 'wrap' }}>{item.name}</Text>
+                    <Text style={{ textAlign: "center", flex: 1, flexWrap: 'wrap' }}>{item.job || "Actor"}</Text>
                 </View>} keyExtractor={item => item.id} />
             </View>
         </View>
