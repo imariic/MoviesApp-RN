@@ -1,12 +1,14 @@
+import { useLinkProps } from "@react-navigation/native";
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
-const Movie = ({ movie }) => {
-
+const Movie = (props) => {
+    const movie = { ...props.movie };
+    const navigation = { ...props.navigation };
     return (
-        <View>
+        <TouchableOpacity onPress={() => navigation.navigate("Details", movie)}>
             <Image width={105} height={154.06} style={styles.image} source={{ uri: `http://image.tmdb.org/t/p/original/${movie.poster_path}` }} />
-        </View>)
+        </TouchableOpacity >)
 }
 
 const styles = StyleSheet.create({

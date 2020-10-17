@@ -3,12 +3,12 @@ import { View, Text } from "react-native";
 import Search from "../Search/Search";
 import MovieList from "../MovieList/MovieList";
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
     return (
         <View>
             <Search />
-            <MovieList />
+            <MovieList navigation={navigation} />
         </View>);
 }
 
