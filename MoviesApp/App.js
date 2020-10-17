@@ -31,7 +31,7 @@ const App = () => {
             backgroundColor: '#0B253F',
           },
         }}>
-          <Stack.Screen name="TMDB" component={Home} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen options={{
             headerBackImage: () => <Image source={require("./assets/ic_baseline-arrow-back-ios.png")} style={{ width: 24, height: 24 }} />,
           }} name="Details" component={Details} />

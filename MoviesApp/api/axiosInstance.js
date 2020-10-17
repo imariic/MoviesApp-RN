@@ -17,7 +17,6 @@ export const getPopularMovies = async (pageNumber = 1) => {
         })
         .catch(e => console.log(e));
 
-
     return popularMovies;
 }
 
@@ -43,4 +42,16 @@ export const getMovieCredits = async movieId => {
         .catch(e => console.log(e));
 
     return movieCredits;
+}
+
+export const searchMovies = async searchTerm => {
+    let movies = [];
+
+    await axiosInstance.get(`search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=1&include_adult=false`)
+        .then(response => {
+            movies = response.data.results;
+        })
+        .catch(e => console.log(e))
+
+    return movies;
 }
