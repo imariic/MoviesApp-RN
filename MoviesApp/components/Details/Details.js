@@ -1,10 +1,12 @@
-import React from "react";
-import { View, Text, Image, ImageBackground, StyleSheet, Dimensions } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, FlatList, ImageBackground, StyleSheet, Dimensions } from "react-native";
 import { connect } from "react-redux";
+import { useMovieCreditsEffect } from "../../custom_hooks/customHooks";
 const screen = Dimensions.get("screen");
 
 const Details = ({ route, navigation, movieGenres }) => {
 
+    const [movieCredits, getMovieCreditsAsync] = useMovieCreditsEffect(route.params.id);
 
     const printMovieGenres = () => {
         let movieGenresIds = route.params.genre_ids.map(item => item.toString());
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         color: "white",
-        fontWeight: "500",
+        fontWeight: "bold",
         marginLeft: 16,
     },
     details: {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getPopularMovies } from "../api/axiosInstance";
-const usePopularMovies = () => {
+import { getPopularMovies, getMovieCredits } from "../api/axiosInstance";
+export const usePopularMovies = () => {
     const [popularMovies, setPopularMovies] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
 
@@ -29,4 +29,18 @@ const usePopularMovies = () => {
 
 }
 
-export default usePopularMovies;
+export const useMovieCreditsEffect = movieId => {
+    const [movieCredits, setMovieCredits] = useState([]);
+
+    const getMovieCreditsAsync = async () => {
+        const credits = await getMovieCredits(movieId);
+        setMovieCredits(credits);
+    }
+
+    useEffect(() => {
+        getMovieCreditsAsync();
+    }, [])
+
+    return [movieCredits, getMovieCreditsAsync];
+
+}

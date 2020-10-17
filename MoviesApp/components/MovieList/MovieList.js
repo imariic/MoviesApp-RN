@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
 import Movie from "../Movie/Movie";
-import usePopularMovies from "../../custom_hooks/customHooks";
+import { usePopularMovies } from "../../custom_hooks/customHooks";
 
 const MovieList = ({ navigation }) => {
     const [popularMovies, fetchMoreMovies, refreshMovies] = usePopularMovies();

@@ -29,5 +29,18 @@ export const getMovieGenres = async () => {
             movieGenres = response.data.genres;
         })
         .catch(e => console.log(e));
+
     return movieGenres;
+}
+
+export const getMovieCredits = async movieId => {
+    let movieCredits = [];
+
+    await axiosInstance.get(`movie/${movieId}/credits?api_key=${API_KEY}`)
+        .then(response => {
+            movieCredits = response.data.cast;
+        })
+        .catch(e => console.log(e));
+
+    return movieCredits;
 }
