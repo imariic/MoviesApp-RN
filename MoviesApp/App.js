@@ -11,7 +11,6 @@ import Home from "./components/Home/Home";
 import Details from "./components/Details/Details";
 import movieReducer from "./store/reducers/movieReducer";
 import { getMovieGenresAsync } from "./store/actions/movieActions";
-import Icon from "react-native-vector-icons";
 
 const Stack = createStackNavigator();
 
@@ -33,7 +32,9 @@ const App = () => {
           },
         }}>
           <Stack.Screen name="TMDB" component={Home} />
-          <Stack.Screen name="Details" component={Details} />
+          <Stack.Screen options={{
+            headerBackImage: () => <Image source={require("./assets/ic_baseline-arrow-back-ios.png")} style={{ width: 22, height: 22 }} />,
+          }} name="Details" component={Details} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
