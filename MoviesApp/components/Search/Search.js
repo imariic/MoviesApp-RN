@@ -10,7 +10,6 @@ const Search = props => {
     }, [searchParam]);*/
 
     return (<View style={styles.container}>
-        <Image source={require("../../assets/baseline_search_black_18dp.png")} />
         <TextInput onChangeText={value => console.log(value)} placeholder="Search" placeholderTextColor="black" style={styles.textInput} />
     </View>)
 }
@@ -20,7 +19,6 @@ const styles = StyleSheet.create({
         marginTop: 22,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 20,
         height: 43,
         width: 323,
         flex: 1,

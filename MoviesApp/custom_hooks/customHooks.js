@@ -17,7 +17,12 @@ const usePopularMovies = () => {
 
     const refreshMovies = async () => {
         let movies = await getPopularMovies(pageNumber);
-        setPopularMovies(movies);
+        if (pageNumber === 1) {
+            setPopularMovies(movies);
+        } else {
+            setPopularMovies([...popularMovies, ...movies]);
+        }
+
     }
 
     return [popularMovies, fetchMoreMovies, refreshMovies];

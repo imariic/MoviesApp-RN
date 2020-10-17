@@ -11,27 +11,25 @@ const MovieList = () => {
     }, [])
 
     return (
-        <View styles={styles.container}>
-            <Text style={styles.title}>What's popular</Text>
-            <View style={styles.flatListContainer}>
-                <FlatList
-                    data={popularMovies}
-                    renderItem={({ item }) => <Movie movie={item} />} keyExtractor={item => item.title}
-                    extraData={popularMovies}
-                    numColumns="3" />
-            </View>
+        <View style={styles.flatListContainer}>
+            <FlatList
+                ListHeaderComponent={() => <Text style={styles.title}>What's popular</Text>}
+                data={popularMovies}
+                renderItem={({ item }) => <Movie movie={item} />} keyExtractor={item => item.title}
+                extraData={popularMovies}
+                numColumns="3"
+                showsVerticalScrollIndicator={false}
+                onEndReached={fetchMoreMovies}
+                onEndReachedThreshold={0.5} />
         </View>)
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 68,
-    },
     title: {
         marginBottom: 20,
         marginTop: 85 - 20,
-        marginLeft: 18,
+        marginLeft: 0,
         color: "#0B253F",
         fontWeight: "500",
         fontSize: 20,
