@@ -27,25 +27,39 @@ const Details = ({ route, navigation, movieGenres }) => {
     }
 
 
-    return (<View style={styles.imageContainer}>
-        <ImageBackground resizeMode={"stretch"} width={screen.width} height={screen.height / 2} style={styles.image} source={{ uri: `http://image.tmdb.org/t/p/original/${route.params.poster_path}` }} >
+    return (<View><View style={styles.imageContainer}>
+        <ImageBackground resizeMode={"stretch"} width={screen.width} height={(screen.height / 2) - 80} style={styles.image} source={{ uri: `http://image.tmdb.org/t/p/original/${route.params.poster_path}` }} >
             <View style={{ flexDirection: "column" }}>
                 <Text style={styles.title}>{route.params.title}</Text>
                 <Text style={styles.details}>{route.params.release_date}</Text>
                 <Text style={styles.details}>{printMovieGenres()} <Text style={styles.voteAverage}>{route.params.vote_average}</Text></Text>
             </View>
         </ImageBackground>
+    </View>
         <View>
             <Text style={styles.overviewTitle}>Overview</Text>
             <Text style={styles.overviewContent}>{route.params.overview}</Text>
+            <View style={{
+                marginTop: 22,
+                marginLeft: "auto",
+                marginRight: "auto",
+                alignItems: "center",
+                width: screen.width,
+            }}>
+                <FlatList numColumns="3" data={movieCredits.slice(0, 6)} renderItem={({ item }) => <View style={{ margin: 10, marginVertical: 8 }}>
+                    <Text style={{ fontWeight: "bold", }}>{item.name}</Text>
+                    <Text style={{ textAlign: "center" }}>{item.job || "Actor"}</Text>
+                </View>} keyExtractor={item => item.id} />
+            </View>
         </View>
-    </View>);
+    </View>
+    );
 }
 
 const styles = StyleSheet.create({
     imageContainer: {
         width: screen.width,
-        height: screen.height / 2,
+        height: (screen.height / 2) - 80,
     },
     image: {
         flex: 1,
