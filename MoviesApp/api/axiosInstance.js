@@ -20,3 +20,14 @@ export const getPopularMovies = async (pageNumber = 1) => {
 
     return popularMovies;
 }
+
+export const getMovieGenres = async () => {
+    let movieGenres = [];
+
+    await axiosInstance.get(`genre/movie/list?api_key=${API_KEY}&language=en-US`)
+        .then(response => {
+            movieGenres = response.data.genres;
+        })
+        .catch(e => console.log(e));
+    return movieGenres;
+}

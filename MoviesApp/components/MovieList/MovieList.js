@@ -9,7 +9,7 @@ const MovieList = ({ navigation }) => {
     useEffect(() => {
         fetchMoreMovies();
     }, [])
-    console.log(navigation);
+
     return (
         <View style={styles.flatListContainer}>
             <FlatList
