@@ -1,10 +1,13 @@
-import React from "react";
-import { StyleSheet, StatusBar, View } from "react-native";
+import React, { useContext } from "react";
+import { StatusBar, View } from "react-native";
+import { StyleContext } from "../../context/contexts";
 
 const AppStatusBar = () => {
+    const statusBarStyle = useContext(StyleContext);
+
     return (
         <View>
-            <StatusBar backgroundColor="#0B253F" />
+            <StatusBar backgroundColor={statusBarStyle} />
         </View>
     );
 }

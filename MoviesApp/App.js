@@ -10,6 +10,7 @@ import AppStatusBar from "./components/AppStatusBar/AppStatusBar";
 import Home from "./pages/Home/Home";
 import Details from "./pages/Details/Details";
 import movieReducer from "./store/reducers/movieReducer";
+import { StyleContext } from "./context/contexts";
 import { getMovieGenresAsync } from "./store/actions/movieActions";
 
 const Stack = createStackNavigator();
@@ -25,7 +26,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <AppStatusBar />
+        <StyleContext.Provider>
+          <AppStatusBar />
+        </StyleContext.Provider>
         <Stack.Navigator screenOptions={{
           headerTitleAlign: 'center', headerTitle: (props) => (<Image style={{ width: 200, height: 50 }} source={require('./assets/headertitle.png')} resizeMode="contain" />), headerStyle: {
             backgroundColor: '#0B253F',
