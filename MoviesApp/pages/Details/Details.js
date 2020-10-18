@@ -7,6 +7,7 @@ const screen = Dimensions.get("screen");
 const Details = ({ route, navigation, movieGenres }) => {
 
     const [movieCredits, getMovieCreditsAsync] = useMovieCreditsEffect(route.params.id);
+    const movie = route.params;
 
     const printMovieGenres = () => {
         let movieGenresIds = route.params.genre_ids.map(item => item.toString());
@@ -28,17 +29,17 @@ const Details = ({ route, navigation, movieGenres }) => {
 
 
     return (<View><View style={styles.imageContainer}>
-        <ImageBackground resizeMode={"stretch"} width={screen.width} height={(screen.height / 2) - 80} style={styles.image} source={{ uri: `http://image.tmdb.org/t/p/original/${route.params.poster_path}` }} >
+        <ImageBackground resizeMode={"stretch"} width={screen.width} height={(screen.height / 2) - 80} style={styles.image} source={{ uri: `http://image.tmdb.org/t/p/original/${movie.poster_path}` }} >
             <View style={{ flexDirection: "column" }}>
-                <Text style={styles.title}>{route.params.title}</Text>
-                <Text style={styles.details}>{route.params.release_date}</Text>
-                <Text style={styles.details}>{printMovieGenres()} <Text style={styles.voteAverage}>{route.params.vote_average}</Text></Text>
+                <Text style={styles.title}>{movie.title}</Text>
+                <Text style={styles.details}>{movie.release_date}</Text>
+                <Text style={styles.details}>{printMovieGenres()} <Text style={styles.voteAverage}>{movie.vote_average}</Text></Text>
             </View>
         </ImageBackground>
     </View>
         <View>
             <Text style={styles.overviewTitle}>Overview</Text>
-            <Text style={styles.overviewContent}>{route.params.overview}</Text>
+            <Text style={styles.overviewContent}>{movie.overview}</Text>
             <View style={{
                 marginTop: 22,
                 marginLeft: "auto",

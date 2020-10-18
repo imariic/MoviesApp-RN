@@ -7,8 +7,8 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import AppStatusBar from "./components/AppStatusBar/AppStatusBar";
-import Home from "./components/Home/Home";
-import Details from "./components/Details/Details";
+import Home from "./pages/Home/Home";
+import Details from "./pages/Details/Details";
 import movieReducer from "./store/reducers/movieReducer";
 import { getMovieGenresAsync } from "./store/actions/movieActions";
 

@@ -58,7 +58,7 @@ export const useFilterMovies = searchTerm => {
 
     useEffect(
         () => {
-            if (searchTerm && searchTerm.length === 3) {
+            if (searchTerm && searchTerm.length >= 3) {
                 debounceSearch.current(searchTerm);
             } else {
                 setFilteredMovies([]);
