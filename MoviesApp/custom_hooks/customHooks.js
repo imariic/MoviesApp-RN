@@ -32,23 +32,28 @@ export const usePopularMovies = () => {
 
 export const useFilterMovies = searchTerm => {
     const [filteredMovies, setFilteredMovies] = useState([]);
-    const [pageNumber, setPageNumber] = useState(1);
+    const pageNumber = useRef(1);
 
     const debounceSearch = useRef(
         _.debounce(searchTerm => {
-            searchMovies(searchTerm, pageNumber).then(response => {
-                if (pageNumber === 1) {
-                    setFilteredMovies(response);
-                } else {
-                    setFilteredMovies([...filteredMovies, ...response]);
-                }
-            });
-
+            refreshMovies(searchTerm);
         }, 500)
     );
 
+    const refreshMovies = searchTerm => {
+        searchMovies(searchTerm, pageNumber.current).then(response => {
+            let moviesWithPosterPath = response.filter(movie => movie.poster_path);
+            if (pageNumber.current === 1) {
+                setFilteredMovies(moviesWithPosterPath);
+            } else {
+                setFilteredMovies([...filteredMovies, ...moviesWithPosterPath]);
+            }
+        });
+    }
+
     const fetchMoreMovies = () => {
-        setPageNumber(pageNumber + 1);
+        pageNumber.current += 1;
+        refreshMovies(searchTerm);
     }
 
     useEffect(
@@ -59,10 +64,10 @@ export const useFilterMovies = searchTerm => {
                 setFilteredMovies([]);
             }
         },
-        [searchTerm, pageNumber]
+        [searchTerm]
     );
 
-    return [filteredMovies, fetchMoreMovies, debounceSearch];
+    return [filteredMovies, fetchMoreMovies];
 
 }
 
