@@ -1,22 +1,18 @@
 import React, { useEffect } from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
 import Movie from "../Movie/Movie";
-import { usePopularMovies } from "../../custom_hooks/customHooks";
+import { useFilterMovies } from "../../custom_hooks/customHooks";
 
-const MovieList = ({ navigation, searchParam }) => {
-    const [popularMovies, fetchMoreMovies, refreshMovies] = usePopularMovies();
-
-    useEffect(() => {
-        fetchMoreMovies();
-    }, [])
+const FilteredMovieList = ({ navigation, searchParam }) => {
+    const [filteredMovies, fetchMoreMovies] = useFilterMovies(searchParam);
 
     return (
         <View style={styles.flatListContainer}>
             <FlatList
-                ListHeaderComponent={() => <Text style={styles.title}>What's popular</Text>}
-                data={popularMovies}
+                ListHeaderComponent={() => <Text style={styles.title}>Showing {filteredMovies.length} results</Text>}
+                data={filteredMovies}
                 renderItem={({ item }) => <Movie movie={item} navigation={navigation} />} keyExtractor={item => item.title}
-                extraData={popularMovies}
+                extraData={filteredMovies}
                 numColumns="3"
                 showsVerticalScrollIndicator={false}
                 onEndReached={fetchMoreMovies}
@@ -41,4 +37,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default MovieList;
+export default FilteredMovieList;
