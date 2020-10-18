@@ -28,7 +28,7 @@ const MovieList = ({ navigation }) => {
 const styles = StyleSheet.create({
     title: {
         marginBottom: 20,
-        marginTop: 85 - 20,
+        marginTop: 20,
         marginLeft: 0,
         color: "#0B253F",
         fontWeight: "500",

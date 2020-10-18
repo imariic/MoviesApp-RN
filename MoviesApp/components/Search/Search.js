@@ -10,7 +10,7 @@ const Search = props => {
     }, [searchParam]);*/
 
     return (<View style={styles.container}>
-        <TextInput onChangeText={value => console.log(value)} placeholder="Search" placeholderTextColor="black" style={styles.textInput} />
+        <TextInput value={searchParam} onChangeText={value => setSearchParam(value)} placeholder="Search" placeholderTextColor="black" style={styles.textInput} />
     </View>)
 }
 
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         marginRight: "auto",
         height: 43,
         width: 323,
-        flex: 1,
         flexDirection: 'row',
     },
     icon: {
@@ -29,11 +28,11 @@ const styles = StyleSheet.create({
         height: 20,
     },
     textInput: {
-        flex: 1,
         height: 43,
         width: 323,
         borderRadius: 10,
         backgroundColor: "#EAEAEB",
+        color: "black"
     }
 });
 
