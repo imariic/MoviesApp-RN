@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import Search from "../../components/Search/Search";
-import MovieList from "../../components/MovieList/MovieList";
-import FilteredMovieList from "../../components/FilteredMovieList/FilteredMovieList";
+import PopularMoviesList from "../../components/PopularMoviesList/PopularMoviesList";
+import FilteredMoviesList from "../../components/FilteredMoviesList/FilteredMoviesList";
 
 const Home = ({ navigation }) => {
 
@@ -11,7 +11,7 @@ const Home = ({ navigation }) => {
     return (
         <View>
             <Search searchParam={searchParam} setSearchParam={setSearchParam} />
-            {searchParam.length < 3 ? <MovieList navigation={navigation} searchParam={searchParam} /> : <FilteredMovieList navigation={navigation} searchParam={searchParam} />}
+            {searchParam.length < 3 ? <PopularMoviesList navigation={navigation} searchParam={searchParam} /> : <FilteredMoviesList navigation={navigation} searchParam={searchParam} />}
         </View>);
 }
 
